@@ -17,7 +17,7 @@ Automate spaces on Mac OS X.
 ### Package
 
 ```bash
-npm install -g mac-space-maker;
+npm install -g mac-space;
 ```
 
 ### System Preferences
@@ -32,9 +32,9 @@ You can access these settings through `System Preferences -> Mission Control`.
 
 ## Commands
 
-- **Help:** `mac-space-maker --help`
+- **Help:** `mac-space --help`
 
-- **Start:** `mac-space-maker --config /path/to/config.json`
+- **Start:** `mac-space --config /path/to/config.json`
 
 ---
 
