@@ -30,7 +30,7 @@ npm install -g mac-space-maker;
 
 ## Configuration
 
-*See [./config/exampe.json]() for an configuration example.*
+*See [./blob/master/config/example.json]() for a sample configuration.*
 
 ### System Preferences
 
@@ -38,7 +38,7 @@ The following settings are recommended. Be forewarned that using any other confi
 
 You can access these settings through `System Preferences -> Mission Control`.
 
-![Mac OS X Mission Control System Preferences](./docs/system-preferences-mission-control.png)
+![Mac OS X Mission Control System Preferences](https://raw.githubusercontent.com/dolox/mac-space/master/docs/img/system-preferences-mission-control.png)
 
 ### Variables
 
