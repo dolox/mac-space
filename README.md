@@ -18,6 +18,14 @@ Automate spaces on Mac OS X.
 npm install -g mac-space-maker;
 ```
 
+### System Preferences
+
+The following settings are recommended. Be forewarned that using any other configuration may cause issues.
+
+You can access these settings through `System Preferences -> Mission Control`.
+
+![Mac OS X Mission Control System Preferences](https://raw.githubusercontent.com/dolox/mac-space/master/docs/img/system-preferences-mission-control.png)
+
 ---
 
 ## Commands
@@ -31,14 +39,6 @@ npm install -g mac-space-maker;
 ## Configuration
 
 *See [./config/example.json](./config/example.json) for a sample configuration.*
-
-### System Preferences
-
-The following settings are recommended. Be forewarned that using any other configuration may cause issues.
-
-You can access these settings through `System Preferences -> Mission Control`.
-
-![Mac OS X Mission Control System Preferences](https://raw.githubusercontent.com/dolox/mac-space/master/docs/img/system-preferences-mission-control.png)
 
 ### JSON Schema
 
