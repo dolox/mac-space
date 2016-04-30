@@ -48,6 +48,10 @@ module.exports = function() {
 					// Build the arguments.
 					var args = value.slice(1);
 
+					// index 0 => func
+					// index 1 => normalize
+					// index 2 => default
+
 					// Add the `value` as the first argument.
 					args.unshift(input[key]);
 

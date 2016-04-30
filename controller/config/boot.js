@@ -13,13 +13,13 @@ module.exports = function() {
 	'use strict';
 
 	// Wrap the Function.
-	return function() {
+	return function(input) {
 		// Verify that the configuration file exists.
-		var exists = fs.existsSync(cli.config);
+		var exists = fs.existsSync(input);
 
 		// If the file cannot be access, throw a error.
 		if (exists === false) {
-			return log.error('The configration file doesn\'t exist or cannot be accessed.', '(' + cli.config + ')');
+			return log.error('The configration file doesn\'t exist or cannot be accessed.', '(' + input + ')');
 		}
 
 		// By default return a fail state.
@@ -28,16 +28,19 @@ module.exports = function() {
 		// Attempt to read and parse the configuration file.
 		try {
 			// Read and parse the configuration.
-			config = JSON.parse(fs.readFileSync(cli.config));
+			config = JSON.parse(fs.readFileSync(input));
+
+			// Normalize the configuration.
+			config = app.controller.config.normalize(config);
 
 			// Throw a success to console.
-			log.success('Configuration loaded successfully.', '(' + cli.config + ')');
+			log.success('Configuration loaded successfully.', '(' + input + ')');
 		}
 
 		// Catch any exceptions.
 		catch (exception) {
 			// Throw a error to console.
-			log.error('Unable to read or parse JSON configuration file.', '(' + cli.config + ')', exception);
+			log.error('Unable to read or parse JSON configuration file.', '(' + input + ')', exception);
 		}
 
 		// Return the configuration.
