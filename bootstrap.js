@@ -43,69 +43,12 @@ module.exports = (function(GLOBAL) {
 		cwd: path.join(__dirname, 'src')
 	}).into(GLOBAL.app);
 
-
-	// @todo clean this up and fork to separate files
-
-	// Swap the package name.
+	// Swap the package name for the `cli`.
 	process.argv[1] = pkg.name;
 
-	// Set the version of the CLI utility.
-	GLOBAL.cli = commander.version(pkg.version);
-
-
-	// Import the acceptable arguments for the program.
-	_.each(pkg.commander, function(option) {
-		cli.option.apply(cli, option);
-	});
-
-	// Add help examples.
-	cli.on('--help', function(){
-		console.log('  Examples:');
-		console.log('');
-		console.log('    npm run start -- -f /path/to/config.json');
-		console.log('    npm run start -- --file /path/to/config.json');
-		console.log('');
-	});
-	
-	// Parse the CLI arguments.
-	GLOBAL.cli.parse(process.argv);
+	// Boot the CLI configuration.
+	GLOBAL.cli = app.controller.cli.boot();
 
 	// Generate a new winston instance.
-	GLOBAL.log = new winston.Logger({
-		// Define the colors.
-		colors: {
-			debug: 'blue',
-			error: 'red',
-			info: 'blue',
-			success: 'green'
-		},
-
-		// The log methods and their levels.
-		levels: {
-			debug: 1,
-			error: 1,
-			info: 1,
-			success: 1
-		},
-
-		// Define the transports.
-		transports: [
-			// Create a new transport protocol.
-			new (winston.transports.Console)({
-				// Enable coloring of the logs.
-				colorize: true,
-
-				// The lowest level to output.
-				level: 'info',
-
-				// Enable timestamping the logs.
-				timestamp: function() {
-					return new Date();
-				}
-			})
-		]
-	});
-
-	// Throw a debug to console.
-	log.debug('bootstrap');
+	GLOBAL.log = app.controller.log.boot();
 }(GLOBAL));

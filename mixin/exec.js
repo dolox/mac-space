@@ -3,7 +3,7 @@
 * Lodash mixin.
 *
 * @author Salvatore Garbesi <sal@dolox.com>
-* @mixin src/mixin/exec
+* @mixin mixin/exec
 *
 **/
 module.exports = function() {

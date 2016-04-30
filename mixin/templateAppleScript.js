@@ -24,7 +24,7 @@ module.exports = function() {
 		**/
 		templateAppleScript: function(input) {
 			// Load and render the template.
-			return _.template(fs.readFileSync(path.join(__dirname, '..', '..', 'src', 'applescript', 'template.applescript')).toString())(input);
+			return _.template(fs.readFileSync(path.join(__dirname, '..', '..', 'tpl', 'window.applescript')).toString())(input);
 		}
 	});
 };
