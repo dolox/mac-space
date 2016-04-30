@@ -3,7 +3,7 @@
 * Lodash mixin.
 *
 * @author Salvatore Garbesi <sal@dolox.com>
-* @mixin src/mixin/escapeQuote
+* @mixin mixin/escapeQuote
 *
 **/
 module.exports = function() {

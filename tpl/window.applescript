@@ -1,5 +1,7 @@
 #!/usr/bin/osascript
 
+-- @todo cleanup and doc
+
 on openNewSpace()
     tell application "System Events"
         —start mission control

@@ -3,7 +3,7 @@
 * Lodash mixin.
 *
 * @author Salvatore Garbesi <sal@dolox.com>
-* @mixin src/mixin/screenResolution
+* @mixin mixin/screenResolution
 *
 **/
 module.exports = function() {

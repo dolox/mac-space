@@ -1,42 +1,46 @@
 /**
 *
-* Lodash mixin.
+* Imports and normalized the clients configuration.
 *
 * @author Salvatore Garbesi <sal@dolox.com>
-* @mixin src/mixin/escapeQuote
+* @method boot
+* @memberof controller/config
+* @param {string} input The configuration file to load for the instance.
+* @returns {object} The normalized configuration.
 *
 **/
-_.mixin({
-	/**
-	*
-	* Escape quotes contained within a String.
-	*
-	* @author Salvatore Garbesi <sal@dolox.com>
-	* @method escapeQuote
-	* @memberof _
-	* @param {string} input The String with quotes to escape.
-	* @returns {string} The output from the command.
-	*
-	**/
-	escapeQuoteX: function(input) {
-		'use strict';
+module.exports = function() {
+	'use strict';
 
+	// Wrap the Function.
+	return function() {
 		// Verify that the configuration file exists.
-		var exists = fs.existsSync(input);
+		var exists = fs.existsSync(cli.config);
 
 		// If the file cannot be access, throw a error.
 		if (exists === false) {
-			return log.error('The configration file doesn\'t exist or cannot be accessed.', '(' + input + ')');
+			return log.error('The configration file doesn\'t exist or cannot be accessed.', '(' + cli.config + ')');
 		}
+
+		// By default return a fail state.
+		var config = false;
 
 		// Attempt to read and parse the configuration file.
 		try {
-			return JSON.parse(fs.readFileSync(input));
-		} catch (exception) {
-			return log.error('Unable to read or parse JSON configuration file.', '(' + input + ')', exception);
+			// Read and parse the configuration.
+			config = JSON.parse(fs.readFileSync(cli.config));
+
+			// Throw a success to console.
+			log.success('Configuration loaded successfully.', '(' + cli.config + ')');
 		}
 
-		// Throw a success to console.
-		log.success('Configuration loaded successfully.', '(' + input + ')');
-	}
-});
+		// Catch any exceptions.
+		catch (exception) {
+			// Throw a error to console.
+			log.error('Unable to read or parse JSON configuration file.', '(' + cli.config + ')', exception);
+		}
+
+		// Return the configuration.
+		return config;
+	};
+};

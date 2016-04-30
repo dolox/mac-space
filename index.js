@@ -19,32 +19,18 @@ module.exports = (function(GLOBAL) {
 		return log.error('No configuration file specified.');
 	}
 
+	// Load and normalize the configuration for the instance.
 	var config = app.config.boot(cli.config);
 
+	// If the configuration failed to normalize, stop the Function.
 	if (config === false) {
-		return;
+		return process.exit();
 	}
 
 
 
 
-	// Verify that the configuration file exists.
-	var exists = fs.existsSync(cli.config);
 
-	// If the file cannot be access, throw a error.
-	if (exists === false) {
-		return log.error('The configration file doesn\'t exist or cannot be accessed.', '(' + cli.config + ')');
-	}
-
-	// Attempt to read and parse the configuration file.
-	try {
-		var config = JSON.parse(fs.readFileSync(cli.config));
-	} catch (exception) {
-		return log.error('Unable to read or parse JSON configuration file.', '(' + cli.config + ')', exception);
-	}
-
-	// Throw a success to console.
-	log.success('Configuration loaded successfully.', '(' + cli.config + ')');
 
 	// Merge the configuration with the defaults.
 	// @todo normalize it ?
