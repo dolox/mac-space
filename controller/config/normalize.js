@@ -15,14 +15,14 @@ module.exports = function() {
 	// Wrap the Function.
 	return function(input) {
 		// Normalize the top level of the configuration.
-		input = _.normalizeObjecValues(input, app.controller.instruction());
+		input = _.normalizeObjectValues(input, app.controller.config.instruction());
 
 		// Normalize the space(s).
 		if (input.space.length !== 0) {
 			// Iterate through each of the space configuration(s) and normalize them.
 			_.each(input.space, function(value, key) {
 				// Normalize the top level of the configuration.
-				input[key] = _.normalizeObjecValues(value, app.controller.instruction.space());
+				input[key] = _.normalizeObjectValues(value, app.controller.config.instruction.space());
 			});
 		}
 

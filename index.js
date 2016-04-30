@@ -27,7 +27,7 @@ module.exports = (function(GLOBAL) {
 	}
 
 
-
+	console.log(config.space);
 
 
 

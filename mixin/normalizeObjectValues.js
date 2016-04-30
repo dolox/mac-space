@@ -3,7 +3,7 @@
 * Lodash mixin.
 *
 * @author Salvatore Garbesi <sal@dolox.com>
-* @mixin mixin/normalizeObjecValues
+* @mixin mixin/normalizeObjectValues
 *
 **/
 module.exports = function() {
@@ -16,14 +16,14 @@ module.exports = function() {
 		* Normalize the values for a Object.
 		*
 		* @author Salvatore Garbesi <sal@dolox.com>
-		* @method normalizeObjecValues
+		* @method normalizeObjectValues
 		* @memberof _
 		* @param {object} input The source Object to normalize.
 		* @param {object} instruction The normalization instructions.
 		* @returns {object} The normalized Object.
 		*
 		**/
-		normalizeObjecValues: function(input, instruction) {
+		normalizeObjectValues: function(input, instruction) {
 			// The normalized Object.
 			var output = {};
 
@@ -38,25 +38,21 @@ module.exports = function() {
 			// Iterate through each of the defaults.
 			_.each(instruction, function(value, key) {
 				// If the `value` is a Object, then handle the nested validation instructions.
-				if (_.isObject(value) === true) {
+				if (_.isArray(value) === false && _.isObject(value) === true) {
 					output[key] = _.normalizeObjectValues(input[key], value);
 				}
 
 				// If the `value` is a Array, and the first item of the Array is a Function, then use that Function to perform the
 				// normalization on the `value`.
 				else if (_.isArray(value) === true && value.length > 0 && _.isFunction(value[0]) === true) {
-					// Build the arguments.
-					var args = value.slice(1);
+					// Store the valid value;
+					var normalized = value[0](input[key]) === true ? input[key] : input[2];
 
-					// index 0 => func
-					// index 1 => normalize
-					// index 2 => default
-
-					// Add the `value` as the first argument.
-					args.unshift(input[key]);
+					// Normalize the value.
+					normalized = _.isFunction(value[1]) === true ? value[1](normalized) : normalized;
 
 					// Invoke the validation.
-					output[key] = value[0].apply(null, args);
+					output[key] = normalized;
 				}
 
 				// If the `input` value isn't `undefined`, then use it, otherwise fallback to the `value`.
