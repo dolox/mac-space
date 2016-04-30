@@ -64,7 +64,6 @@ The application expects the following configuration in a valid JSON format.
 |       |        | shellPre      | Array/String |         | No       | Invoke shell commands before the window has launched.      |
 |       |        | shell         | Array/String |         | No       | Invoke shell commands to assist with launching the window. |
 |       |        | title         | String       |         | No       | The title for the window.                                  |
-|-------|--------|---------------|--------------|---------|----------|------------------------------------------------------------|
 
 ### Notes
 
