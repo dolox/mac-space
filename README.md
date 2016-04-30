@@ -14,6 +14,8 @@ Automate spaces on Mac OS X.
 
 ## Installation
 
+### Package
+
 ```bash
 npm install -g mac-space-maker;
 ```
