@@ -16,15 +16,15 @@
 
 		"window": [{
 			"application": "Finder",
-			"script": "tell application \"Finder\" to make new Finder window"
+			"osascript": "tell application \"Finder\" to make new Finder window"
 		}, {
 			"application": "Notes"
 		}, {
 			"application": "TextEdit",
-			"command": "echo 'mac-space-maker' | open -f"
+			"shell": "echo 'mac-space' | open -f"
 		}, {
 			"application": "Terminal",
-			"script": "tell application \"Terminal\" to do script \"ls -la\""
+			"osascript": "tell application \"Terminal\" to do script \"ls -la\""
 		}]
 	}, {
 		"column": {
