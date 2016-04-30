@@ -73,9 +73,9 @@ module.exports = function() {
 				width: w
 			}));
 
-			fs.writeFileSync('_tmp.applescript', template);
+			fs.writeFileSync('./tmp/build.applescript', template);
 
-			_.exec('osascript _tmp.applescript');
+			_.exec('osascript ./tmp/build.applescript');
 		});
 	};
 };
