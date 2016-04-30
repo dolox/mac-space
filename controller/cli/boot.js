@@ -11,26 +11,29 @@
 module.exports = function() {
 	'use strict';
 
-	// Set the version of the CLI utility.
-	var me = commander.version(pkg.version);
+	// Wrap the Function.
+	return function() {
+		// Set the version of the CLI utility.
+		var me = commander.version(pkg.version);
 
-	// Import the acceptable arguments for the program.
-	_.each(pkg.commander, function(option) {
-		cli.option.apply(cli, option);
-	});
+		// Import the acceptable arguments for the program.
+		_.each(pkg.commander, function(option) {
+			me.option.apply(me, option);
+		});
 
-	// Add help examples.
-	me.on('--help', function(){
-		console.log('  Examples:');
-		console.log('');
-		console.log('    npm run start -- -f /path/to/config.json');
-		console.log('    npm run start -- --file /path/to/config.json');
-		console.log('');
-	});
+		// Add help examples.
+		me.on('--help', function(){
+			console.log('  Examples:');
+			console.log('');
+			console.log('    npm run start -- -f /path/to/config.json');
+			console.log('    npm run start -- --file /path/to/config.json');
+			console.log('');
+		});
 
-	// Parse the CLI arguments.
-	me.parse(process.argv);
+		// Parse the CLI arguments.
+		me.parse(process.argv);
 
-	// Return the commander instance.
-	return me;
+		// Return the commander instance.
+		return me;
+	};
 };

@@ -39,9 +39,7 @@ module.exports = (function(GLOBAL) {
 	GLOBAL.winston = require('winston');
 
 	// Autoload the source files into memory.
-	expressLoad('', {
-		cwd: path.join(__dirname, 'src')
-	}).into(GLOBAL.app);
+	expressLoad('mixin').then('controller').into(app);
 
 	// Swap the package name for the `cli`.
 	process.argv[1] = pkg.name;

@@ -18,9 +18,8 @@ module.exports = (function(GLOBAL) {
 	if (_.isString(_.get(cli, 'config')) === false) {
 		return log.error('No configuration file specified.');
 	}
-
 	// Load and normalize the configuration for the instance.
-	var config = app.config.boot(cli.config);
+	var config = app.controller.config.boot(cli.config);
 
 	// If the configuration failed to normalize, stop the Function.
 	if (config === false) {
