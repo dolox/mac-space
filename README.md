@@ -44,7 +44,6 @@ You can access these settings through `System Preferences -> Mission Control`.
 
 The application expects the following configuration in a valid JSON format.
 
-|--------------------------------|--------------|---------|----------|------------------------------------------------------------|
 | Key                            | Type         | Default | Required | Description                                                |
 |--------------------------------|--------------|---------|----------|------------------------------------------------------------|
 | delay |                        | Number       | 0.5     | No       | The delay between launching windows.                       |
