@@ -44,10 +44,10 @@ You can access these settings through `System Preferences -> Mission Control`.
 
 The application expects the following configuration in a valid JSON format.
 
-| Key                            | Type         | Default | Required | Description                                                |
-|--------------------------------|--------------|---------|----------|------------------------------------------------------------|
-| delay |                        | Number       | 0.5     | No       | The delay between launching windows.                       |
-| space |                        | Array/Object | []      | No       | The configuration for the space.                           |
+| Key   |        |               | Type         | Default | Required | Description                                                |
+|-------|--------|---------------|--------------|---------|----------|------------------------------------------------------------|
+| delay |        |               | Number       | 0.5     | No       | The delay between launching windows.                       |
+| space |        |               | Array/Object | []      | No       | The configuration for the space.                           |
 |       | column |               | Object       | {}      | No       | The grid columns configuration.                            |
 |       |        | max           | Number       | 2       | No       | The maximum number of columns to allow.                    |
 |       |        | spacing       | Number       | 0       | No       | The number of pixels to space the columns with.            |
@@ -64,6 +64,7 @@ The application expects the following configuration in a valid JSON format.
 |       |        | shellPre      | Array/String |         | No       | Invoke shell commands before the window has launched.      |
 |       |        | shell         | Array/String |         | No       | Invoke shell commands to assist with launching the window. |
 |       |        | title         | String       |         | No       | The title for the window.                                  |
+|-------|--------|---------------|--------------|---------|----------|------------------------------------------------------------|
 
 ### Notes
 
