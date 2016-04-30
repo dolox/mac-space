@@ -30,7 +30,7 @@ npm install -g mac-space-maker;
 
 ## Configuration
 
-*See [](./config/example.json) for a sample configuration.*
+*See [./config/example.json](./config/example.json) for a sample configuration.*
 
 ### System Preferences
 
