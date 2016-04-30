@@ -1,0 +1,33 @@
+{
+  "name": "mac-space",
+  "version": "0.0.1",
+  "description": "Automate spaces on Mac OS X.",
+  "main": "index.js",
+  "scripts": {
+    "help": "node index.js --help",
+    "start": "node index.js",
+    "test": "eslint ."
+  },
+  "author": "Salvatore Garbesi <sal@dolox.com>",
+  "license": "MIT",
+  "commander": {
+    "file": [
+      "-c, --config <String>",
+      "The configuration file to load."
+    ],
+    "version": [
+      "-v, --version",
+      "The version of the application."
+    ]
+  },
+  "dependencies": {
+    "commander": "^2.9.0",
+    "eslint": "^2.9.0",
+    "express-load": "^1.1.15",
+    "lodash": "^4.11.1",
+    "winston": "^2.2.0"
+  },
+  "engines": {
+    "node": ">=4.2"
+  }
+}

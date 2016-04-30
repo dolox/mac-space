@@ -1,0 +1,50 @@
+{
+	"delay": 0.5,
+
+	"space": [{
+		"column": {
+			"max": 2,
+			"spacing": 1
+		},
+
+		"row": {
+			"max": 2,
+			"spacing": 1
+		},
+
+		"space": 2,
+
+		"window": [{
+			"application": "Finder",
+			"script": "tell application \"Finder\" to make new Finder window"
+		}, {
+			"application": "Notes"
+		}, {
+			"application": "TextEdit",
+			"command": "echo 'mac-space-maker' | open -f"
+		}, {
+			"application": "Terminal",
+			"script": "tell application \"Terminal\" to do script \"ls -la\""
+		}]
+	}, {
+		"column": {
+			"max": 0
+		},
+
+		"row": {
+			"max": 0
+		},
+
+		"space": 3,
+
+		"window": [{
+			"application": "TextMate",
+
+			"osascriptPre": "tell application \"TextMate\" to close (every window whose name contains \"talklive-sock\")",
+
+			"osascript": [
+				"(do shell script \"/usr/local/bin/mate ~/Developer/tristate/talklive-sock\")"
+			]
+		}]
+	}]
+}
