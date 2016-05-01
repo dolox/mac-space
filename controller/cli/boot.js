@@ -26,7 +26,7 @@ module.exports = function() {
 			console.log('  Examples:');
 			console.log('');
 			console.log('    ' + pkg.name + ' -c /path/to/config.json');
-			console.log('    ' + pkg.name + ' -- --config /path/to/config.json');
+			console.log('    ' + pkg.name + ' --config /path/to/config.json');
 			console.log('');
 		});
 
