@@ -2,7 +2,7 @@
 
 Automate spaces on Mac OS X.
 
-![mac-space Demonstration](./docs/img/demonstration.gif)
+![mac-space Demonstration](https://github.com/dolox/mac-space/blob/gh-pages/img/demonstration.gif?raw=true)
 
 ---
 
