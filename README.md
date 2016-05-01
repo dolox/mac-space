@@ -2,7 +2,7 @@
 
 Automate spaces on Mac OS X.
 
-@todo create video gif here
+![mac-space Demonstration](./docs/img/demonstration.gif)
 
 ---
 

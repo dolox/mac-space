@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 /**
 *
 * The main application which loads the spaces configuration.

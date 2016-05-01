@@ -12,7 +12,7 @@
 			"spacing": 5
 		},
 
-		"space": 6,
+		"space": 1,
 
 		"window": [{
 			"application": "TextEdit",
@@ -45,8 +45,6 @@
 			"spacing": 5
 		},
 
-		"enabled": false,
-
 		"row": {
 			"max": 2,
 			"spacing": 5
@@ -72,8 +70,6 @@
 			"osascript": "tell application \"Terminal\" to do script \"ls -la\""
 		}]
 	}, {
-		"enabled": false,
-
 		"space": 3,
 
 		"window": [{

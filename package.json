@@ -1,8 +1,11 @@
 {
   "name": "mac-space",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "description": "Automate spaces on Mac OS X.",
   "main": "index.js",
+  "bin": {
+    "mac-space": "index.js"
+  },
   "scripts": {
     "help": "node index.js --help",
     "start": "node index.js",
