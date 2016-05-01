@@ -1,6 +1,6 @@
 {
   "name": "mac-space",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Automate spaces on Mac OS X.",
   "main": "index.js",
   "bin": {
@@ -14,13 +14,9 @@
   "author": "Salvatore Garbesi <sal@dolox.com>",
   "license": "MIT",
   "commander": {
-    "file": [
+    "config": [
       "-c, --config <String>",
       "The configuration file to load."
-    ],
-    "version": [
-      "-v, --version",
-      "The version of the application."
     ]
   },
   "dependencies": {

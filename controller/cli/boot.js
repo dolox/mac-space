@@ -25,8 +25,8 @@ module.exports = function() {
 		me.on('--help', function(){
 			console.log('  Examples:');
 			console.log('');
-			console.log('    npm run start -- -f /path/to/config.json');
-			console.log('    npm run start -- --file /path/to/config.json');
+			console.log('    ' + pkg.name + ' -c /path/to/config.json');
+			console.log('    ' + pkg.name + ' -- --config /path/to/config.json');
 			console.log('');
 		});
 
