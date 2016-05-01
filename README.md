@@ -87,7 +87,7 @@ The application expects the following configuration in a valid JSON format.
 
 - **Spaces Must Already Exist:** The application will not automatically create spaces for you. When running the application your spaces must already exist, otherwise the application will just use the current space where it's being run from.
 
-- **Moving Windows Across Spaces:** Although is it possible, requires a decent amount of work to pull off properly. It's currently unsupported.
+- **Moving Windows Across Spaces:** It's possible, but currently unsupported due the amount of work required. Feel free to make a pull request.
 
 ---
 
