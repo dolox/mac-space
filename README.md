@@ -85,7 +85,9 @@ The application expects the following configuration in a valid JSON format.
 
 - **Resizing Problems:** Some OS X applications simply don't support resizing of their windows, and there's not much that can be done about this. If you have an idea or working example, please feel free to create a new issue or make a pull request.
 
-- **Moving Windows Across Spaces:** Unfortunately this can't be done either without some major hacking. If you're able to achieve a working illustration please make a pull request. A work around is to simply close the window in question, then allow the application to re-open it in the space desired.
+- **Spaces Must Already Exist:** The application will not automatically create spaces for you. When running the application your spaces must already exist, otherwise the application will just use the current space where it's being run from.
+
+- **Moving Windows Across Spaces:** Although is it possible, requires a decent amount of work to pull off properly. It's currently unsupported.
 
 ---
 
