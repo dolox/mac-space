@@ -51,7 +51,7 @@ The application expects the following configuration in a valid JSON format.
 |       |         | spacing       | Number       | 0       | No       | The number of pixels to space the rows with.               |
 |       | space   |               | Number       | 1       | No       | The Mac OS X space to assign the windows to.               |
 |       | window  |               | Array/Object | []      | No       | The configuration for each of the windows for the space.   |
-|       |         | application   | String       |         | Yes      | The name of the application recognizable by AppleScript.   |
+|       |         | application   | String       |         | No       | The name of the application recognizable by AppleScript.   |
 |       |         | description   | String       |         | No       | A description for the window.                              |
 |       |         | osascript     | Array/String |         | No       | Invoke OSA commands to assist with launching the window.   |
 |       |         | osascriptPost | Array/String |         | No       | Invoke OSA commands after the window has launched.         |
@@ -68,6 +68,8 @@ The application expects the following configuration in a valid JSON format.
 - **Delay:** You may need to adjust the delay depending on the speed of your system.
 
 - **Disabling Grid/Resizing/Moving:** Set the maximum number of columns and rows to `0` to disable resizing and moving of windows. Doing this will simply assign the window to a specific space.
+
+- **Empty Grid Spaces:** Leave `space.window.application` field empty and the grid space will be left empty.
 
 ---
 
@@ -88,6 +90,8 @@ The application expects the following configuration in a valid JSON format.
 - **Spaces Must Already Exist:** The application will not automatically create spaces for you. When running the application your spaces must already exist, otherwise the application will just use the current space where it's being run from.
 
 - **Moving Windows Across Spaces:** It's possible, but currently unsupported due the amount of work required. Feel free to make a pull request.
+
+- **Multi-Monitor Support:** It's possible, but currently unsupported due the amount of work required. Feel free to make a pull request.
 
 ---
 
