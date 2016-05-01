@@ -45,7 +45,11 @@ module.exports = (function(GLOBAL) {
 	GLOBAL.winston = require('winston');
 
 	// Autoload the source files into memory.
-	expressLoad('mixin').then('controller').into(app);
+	expressLoad('mixin', {
+		cwd: __dirname
+	}).then('controller', {
+		cwd: __dirname
+	}).into(app);
 
 	// Create the temporary directory for the project.
 	fs.existsSync(tmp) === false ? fs.mkdirSync(tmp) : null;
