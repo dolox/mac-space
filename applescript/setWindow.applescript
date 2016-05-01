@@ -66,9 +66,9 @@ on setWindow(inputApplication, inputDelay, inputOsascript, inputOsascriptPost, i
 		end tell
 	end if
 
-	-- Invoke the post-shell commmand.
-	if (inputShellPost is not "") then do shell script inputShellPost
-
 	-- Invoke the post-osascript.
 	if (inputOsascriptPost is not "") then run script inputOsascriptPost
+
+	-- Invoke the post-shell commmand.
+	if (inputShellPost is not "") then do shell script inputShellPost
 end setWindow
