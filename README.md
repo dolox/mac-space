@@ -67,7 +67,7 @@ The application expects the following configuration in a valid JSON format.
 
 - **Delay:** You may need to adjust the delay depending on the speed of your system.
 
-- **Disabling Grid/Resizing/Moving:** Set the maximum number of columns and row to `0` to disable resizing and moving of windows. Doing this will simply assign the window to a specific space.
+- **Disabling Grid/Resizing/Moving:** Set the maximum number of columns and rows to `0` to disable resizing and moving of windows. Doing this will simply assign the window to a specific space.
 
 ---
 
