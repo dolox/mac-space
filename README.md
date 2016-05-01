@@ -53,12 +53,12 @@ The application expects the following configuration in a valid JSON format.
 |       | window  |               | Array/Object | []      | No       | The configuration for each of the windows for the space.   |
 |       |         | application   | String       |         | Yes      | The name of the application recognizable by AppleScript.   |
 |       |         | description   | String       |         | No       | A description for the window.                              |
+|       |         | osascript     | Array/String |         | No       | Invoke OSA commands to assist with launching the window.   |
 |       |         | osascriptPost | Array/String |         | No       | Invoke OSA commands after the window has launched.         |
 |       |         | osascriptPre  | Array/String |         | No       | Invoke OSA commands before the window has launched.        |
-|       |         | osascript     | Array/String |         | No       | Invoke OSA commands to assist with launching the window.   |
+|       |         | shell         | Array/String |         | No       | Invoke shell commands to assist with launching the window. |
 |       |         | shellPost     | Array/String |         | No       | Invoke shell commands after the window has launched.       |
 |       |         | shellPre      | Array/String |         | No       | Invoke shell commands before the window has launched.      |
-|       |         | shell         | Array/String |         | No       | Invoke shell commands to assist with launching the window. |
 |       |         | title         | String       |         | No       | The title for the window.                                  |
 
 ### Notes

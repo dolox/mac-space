@@ -3,7 +3,7 @@
 * Set the active space on the desktop.
 *
 * @author Salvatore Garbesi <sal@dolox.com>
-* @module applescript/setSpaceIndex
+* @method setSpaceIndex
 * @param {number} inputIndex The desktop space to change to.
 * @param {number} inputListIndex The list space to change to.
 * @param {number} inputGroupIndex The group space to change to.
