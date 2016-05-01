@@ -1,5 +1,5 @@
 {
-	"delay": 0.5,
+	"delay": 0.25,
 
 	"space": [{
 		"column": {
@@ -11,44 +11,45 @@
 			"max": 3,
 			"spacing": 5
 		},
-		"space": 2,
+
+		"space": 12,
 
 		"window": [{
 			"application": "TextEdit",
 			"description": "Open the TextEdit application with pre-filled text.",
-			"shell": "echo 'mac-space x1' | open -f"
+			"shell": "echo 'mac-space Test #1' | open -f"
 		}, {
 			"application": "TextEdit",
 			"description": "Open the TextEdit application with pre-filled text.",
-			"shell": "echo 'mac-space x2' | open -f"
+			"shell": "echo 'mac-space Test #2' | open -f"
 		}, {
 			"application": "TextEdit",
 			"description": "Open the TextEdit application with pre-filled text.",
-			"shell": "echo 'mac-space x3' | open -f"
+			"shell": "echo 'mac-space Test #3' | open -f"
 		}, {
 			"application": "TextEdit",
 			"description": "Open the TextEdit application with pre-filled text.",
-			"shell": "echo 'mac-space x4' | open -f"
+			"shell": "echo 'mac-space Test #4' | open -f"
 		}, {
 			"application": "TextEdit",
 			"description": "Open the TextEdit application with pre-filled text.",
-			"shell": "echo 'mac-space x5' | open -f"
+			"shell": "echo 'mac-space Test #5' | open -f"
 		}, {
 			"application": "TextEdit",
 			"description": "Open the TextEdit application with pre-filled text.",
-			"shell": "echo 'mac-space x6' | open -f"
+			"shell": "echo 'mac-space Test #6' | open -f"
 		}]
 	}, {
 		"column": {
 			"max": 2,
-			"spacing": 0
+			"spacing": 5
 		},
 
 		"enabled": false,
 
 		"row": {
 			"max": 2,
-			"spacing": 0
+			"spacing": 5
 		},
 
 		"space": 2,
@@ -58,12 +59,13 @@
 			"description": "Open a Finder window.",
 			"osascript": "tell application \"Finder\" to make new Finder window"
 		}, {
-			"application": "Notes",
-			"description": "Open the Notes application."
+			"application": "Terminal",
+			"description": "Open the Terminal application and run a command. Space 4 will close this terminal.",
+			"osascript": "tell application \"Terminal\" to do script \"echo -n -e '\\\\033]0;mac-space Removable Terminal\\\\007';\""
 		}, {
-			"application": "TextEdit",
-			"description": "Open the TextEdit application with pre-filled text.",
-			"shell": "echo 'mac-space' | open -f"
+			"application": "Finder",
+			"description": "Open a Finder window.",
+			"osascript": "tell application \"Finder\" to make new Finder window"
 		}, {
 			"application": "Terminal",
 			"description": "Open the Terminal application and run a command.",
@@ -75,13 +77,10 @@
 		"space": 3,
 
 		"window": [{
-			"application": "TextMate",
-
-			"osascriptPre": "tell application \"TextMate\" to close (every window whose name contains \"talklive-sock\")",
-
-			"osascript": [
-				"(do shell script \"/usr/local/bin/mate ~/Developer/tristate/talklive-sock\")"
-			]
+			"application": "Terminal",
+			"description": "Close the previously opened terminal window.",
+			"osascript": "tell application \"Terminal\" to do script \"echo -n -e '\\\\033]0;mac-space Removable Terminal\\\\007';\"",
+			"osascriptPre": "tell application \"Terminal\" to close (every window whose name contains \"mac-space Removable Terminal\")"
 		}]
 	}]
 }

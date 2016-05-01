@@ -22,14 +22,14 @@ module.exports = function() {
 			// Iterate through each of the space configuration(s) and normalize them.
 			_.each(input.space, function(spaceValue, spaceKey) {
 				// Normalize the top level of the configuration.
-				input[spaceKey] = _.normalizeObjectValues(spaceValue, app.controller.config.instruction.space());
+				input.space[spaceKey] = _.normalizeObjectValues(spaceValue, app.controller.config.instruction.space());
 
 				// Normalize the window(s).
-				if (input[spaceKey].window.length !== 0) {
+				if (input.space[spaceKey].window.length !== 0) {
 					// Iterate through each of the window configuration(s) and normalize them.
-					_.each(input[spaceKey].window, function(windowValue, windowKey) {
+					_.each(input.space[spaceKey].window, function(windowValue, windowKey) {
 						// Normalize the top level of the configuration.
-						input[spaceKey].window[windowKey] = _.normalizeObjectValues(windowValue, app.controller.config.instruction.space.window());
+						input.space[spaceKey].window[windowKey] = _.normalizeObjectValues(windowValue, app.controller.config.instruction.space.window());
 
 					});
 				}

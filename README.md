@@ -40,7 +40,7 @@ The application expects the following configuration in a valid JSON format.
 
 | Key   |         |               | Type         | Default | Required | Description                                                |
 |-------|---------|---------------|--------------|---------|----------|------------------------------------------------------------|
-| delay |         |               | Number       | 0.5     | No       | The delay between launching windows.                       |
+| delay |         |               | Number       | 0.25    | No       | The delay between launching windows.                       |
 | space |         |               | Array/Object | []      | No       | The configuration for the space.                           |
 |       | column  |               | Object       | {}      | No       | The grid columns configuration.                            |
 |       |         | max           | Number       | 0       | No       | The maximum number of columns to allow.                    |

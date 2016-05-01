@@ -38,11 +38,17 @@ module.exports = (function(GLOBAL) {
 	// Load the `package.json` file.
 	GLOBAL.pkg = JSON.parse(fs.readFileSync(path.join(__dirname, 'package.json')));
 
+	// The temporary directory for the project.
+	GLOBAL.tmp = path.join(__dirname, 'tmp');
+
 	// Logging utility.
 	GLOBAL.winston = require('winston');
 
 	// Autoload the source files into memory.
 	expressLoad('mixin').then('controller').into(app);
+
+	// Create the temporary directory for the project.
+	fs.existsSync(tmp) === false ? fs.mkdirSync(tmp) : null;
 
 	// Swap the package name for the `cli`.
 	process.argv[1] = pkg.name;

@@ -16,7 +16,7 @@ module.exports = function() {
 		// Build the instructions.
 		return {
 			// The delay between launching windows.
-			delay: [_.isNumber, undefined, 0.5],
+			delay: [_.isNumber, undefined, 0.25],
 
 			// The configuration for the space.
 			space: [_.isArrayOrObject, _.castToArray, []]

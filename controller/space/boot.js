@@ -20,81 +20,47 @@ module.exports = function() {
 			return;
 		}
 
-		// Store the concatenated AppleScript template.
-		var appleScript = '';
-
-		// @todo remove
-		appleScript += fs.readFileSync(path.join(__dirname, '..', '..', 'applescript', 'setSpace.applescript')).toString();
-		appleScript += fs.readFileSync(path.join(__dirname, '..', '..', 'applescript', 'setSpaceIndex.applescript')).toString();
-		appleScript += fs.readFileSync(path.join(__dirname, '..', '..', 'applescript', 'setWindow.applescript')).toString();
-
-		// Append a comment for the new `setSpace` routine.
-		appleScript += '\n-- Move to Space ' + input.space + '\n';
-
-		// Append the `setSpace` routine.
-		appleScript += _.appleScriptRoutineCall('setSpace', [
+		// Change the space now to obtain the resolution. This event needs to occur now, as different spaces may contain
+		// different resolutions (on separate monitors).
+		_.appleScript(_.appleScriptRoutineCall('setSpace', [
 			config.delay,
 			input.space
-		]) + '\n';
+		]));
 
 		// The starting column for the grid.
 		var column = -1;
 
+		// Fetch the screen resolution.
+		var resolution = _.screenResolution();
+
 		// The starting row for the grid.
 		var row = 0;
 
-		// Reference the `tmp` directory.
-		var tmpDirectory = path.join(__dirname, '..', '..', 'tmp');
+		// Store the concatenated AppleScript.
+		var script = '';
 
-		// Generate a temporary directory for the instance.
-		var instanceDirectory = path.join(tmpDirectory, nodeUuid.v4());
+		// The height of the windows.
+		var height = input.row.max <= 0 ? 0 : Math.floor(resolution.height / input.row.max);
 
-		// If the `tmp` directory doesn't exist, then create it.
-		if (fs.existsSync(tmpDirectory) === false) {
-			// Create the directory.
-			fs.mkdirSync(tmpDirectory);
-		}
-
-		// Create the temporary directory for the instance.
-		fs.mkdirSync(instanceDirectory);
-
-
-
-
-		// @todo ok so this we need to fetch when the space changes apparently...
-		var resolution = _.screenResolution();
-
-
-
+		// The width of the windows.
+		var width = input.column.max <= 0 ? 0 : Math.floor(resolution.width / input.column.max);
 
 		// Iterate through each of the windows and open them on the specific space.
 		input.window.forEach(function(value) {
-			// If the `application` property is missing, then skip the iteration.
-			if (_.isEmpty(value.application) === true) {
-				// Throw a error to console.
-				log.error('No application name specified for window! Skipping.', value);
+			// Assign the windows height.
+			var windowHeight = height;
 
-				// Skip the iteration..
-				return;
-			}
+			// Assign the windows width.
+			var windowWidth = width;
 
-			// @todo cleanup
-			var windowHeight = 0;
-			var windowWidth = 0;
+			// Assign the windows X position.
 			var windowX = 0;
+
+			// Assign the windows Y position.
 			var windowY = 0;
 
 			// Process the grid if the maximum number of columns/rows aren't set to `0`.
 			if (input.column.max > 0 && input.row.max > 0) {
-
-
-				// @todo
-				windowHeight = Math.floor(resolution.height / input.row.max);
-
-				windowWidth = Math.floor(resolution.width / input.column.max);
-
-
-
 				// Increment the column before the row.
 				if (column < input.column.max - 1) {
 					column++;
@@ -107,6 +73,11 @@ module.exports = function() {
 
 					// Reset the column.
 					column = 0;
+				}
+
+				// If the `application` property is empty, then stop the iteration.
+				if (_.isEmpty(value.application) === true) {
+					return;
 				}
 
 				// Adjust the X position of the window.
@@ -128,17 +99,13 @@ module.exports = function() {
 				}
 			}
 
-			// Append a comment for the new `setWindow` routine.
-			appleScript += '\n-- ' + value.application;
-
-			// Append the `title` for the window.
-			appleScript += value.title ? ' - ' + value.title : '';
-
-			// Append the `description` for the window.
-			appleScript += value.description ? ' - ' + value.description : '';
+			// If the `application` property is empty, then stop the iteration.
+			if (_.isEmpty(value.application) === true) {
+				return;
+			}
 
 			// Append the `setWindow` routine.
-			appleScript += '\n' + _.appleScriptRoutineCall('setWindow', [
+			script += _.appleScriptRoutineCall('setWindow', [
 				value.application,
 				config.delay,
 				value.osascript.join(' & '),
@@ -155,24 +122,7 @@ module.exports = function() {
 			]) + '\n';
 		});
 
-		var appleScriptFile = path.join(instanceDirectory, 'window.applescript');
-
-		// Store the AppleScript file.
-		fs.writeFileSync(appleScriptFile, appleScript);
-
-		// Attempt to invoke the AppleScript file.
-		try {
-			// Invoke the AppleScript file.
-			_.exec('osascript ' + appleScriptFile);
-		}
-
-		// Catch any exceptions.
-		catch (exception) {
-			// Throw a error to console.
-			log.error('Building of space failed.', exception);
-		}
-
-		// Remove the temporary directory.
-		//_.exec('rm -r ' + instanceDirectory);
+		// Invoke the AppleScript.
+		_.appleScript(script);
 	};
 };

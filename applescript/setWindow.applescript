@@ -33,14 +33,14 @@ on setWindow(inputApplication, inputDelay, inputOsascript, inputOsascriptPost, i
 	-- Run the Application.
 	tell application inputApplication to run
 
-	-- Set the Application as the top window.
-	tell application inputApplication to activate
-
 	-- Invoke the shell commmand.
 	if (inputShell is not "") then do shell script inputShell
 
 	-- Invoke the osascript.
 	if (inputOsascript is not "") then run script inputOsascript
+
+	-- Add a delay due to UI animations.
+	delay inputDelay
 
 	-- Resize and reposition the window.
 	if (inputWindowHeight is not 0 or inputWindowWidth is not 0) then
