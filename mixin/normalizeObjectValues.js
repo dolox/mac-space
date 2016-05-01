@@ -46,7 +46,7 @@ module.exports = function() {
 				// normalization on the `value`.
 				else if (_.isArray(value) === true && value.length > 0 && _.isFunction(value[0]) === true) {
 					// Store the valid value;
-					var normalized = value[0](input[key]) === true ? input[key] : input[2];
+					var normalized = value[0](input[key]) === true ? input[key] : value[2];
 
 					// Normalize the value.
 					normalized = _.isFunction(value[1]) === true ? value[1](normalized) : normalized;

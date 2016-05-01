@@ -15,67 +15,120 @@ module.exports = function() {
 
 	// Wrap the Function.
 	return function(config, input) {
-		var cols = -1;
-		var rows = 0;
+		// Store the concatenated AppleScript template.
+		var appleScript = '';
+
+		// @todo remove
+		appleScript += fs.readFileSync(path.join(__dirname, '..', '..', 'applescript', 'setSpace.applescript')).toString();
+		appleScript += fs.readFileSync(path.join(__dirname, '..', '..', 'applescript', 'setSpaceIndex.applescript')).toString();
+		appleScript += fs.readFileSync(path.join(__dirname, '..', '..', 'applescript', 'setWindow.applescript')).toString();
+
+		// The starting column for the grid.
+		var column = -1;
+
+		// The starting row for the grid.
+		var row = 0;
+
+		// Reference the `tmp` directory.
+		var tmpDirectory = path.join(__dirname, '..', '..', 'tmp');
+
+		// Generate a temporary directory for the instance.
+		var instanceDirectory = path.join(tmpDirectory, nodeUuid.v4());
+
+		// If the `tmp` directory doesn't exist, then create it.
+		if (fs.existsSync(tmpDirectory) === false) {
+			// Create the directory.
+			fs.mkdirSync(tmpDirectory);
+		}
+
+		// Create the temporary directory for the instance.
+		fs.mkdirSync(instanceDirectory);
+
 
 		// @todo ok so this we need to fetch when the space changes apparently...
-		// interesting
 		var resolution = _.screenResolution();
 
-		var winCols = Math.floor(resolution.width / input.column.max);
-		var winRows = Math.floor(resolution.height / input.row.max);
 
+		var windowHeight = Math.floor(resolution.height / input.row.max);
+
+		var windowWidth = Math.floor(resolution.width / input.column.max);
+
+		// Iterate through each of the windows and open them on the specific space.
 		input.window.forEach(function(value, index) {
-			if (cols < input.column.max - 1) {
-				cols++;
-			} else {
-				rows++;
-				cols = 0;
+			// @todo if application is missing throw a error
+
+			if (column < input.column.max - 1) {
+				column++;
 			}
 
-			var h = winRows;
-			var w = winCols;
+			
+			else {
+				row++;
+				column = 0;
+			}
 
-			var left = (cols * (resolution.width / input.column.max));
-			var top = (rows * (resolution.height / input.row.max));
+			var left = (column * (resolution.width / input.column.max));
+			var top = (row * (resolution.height / input.row.max));
 
-			if (input.column.max > 1 && cols == input.column.max - 1 && input.column.spacing) {
+			if (input.column.max > 1 && column == input.column.max - 1 && input.column.spacing) {
 				left += input.column.spacing;
 			}
 
-			if (input.row.max > 1 && rows == input.row.max - 1 && input.row.spacing) {
+			if (input.row.max > 1 && row == input.row.max - 1 && input.row.spacing) {
 				top += input.row.spacing;
 			}
 
 			if (input.row.max > 1) {
-				h -= input.row.spacing;
+				windowHeight -= input.row.spacing;
 			}
 
 			if (input.column.max > 1) {
-				w -= input.column.spacing;
+				windowWidth -= input.column.spacing;
 			}
 
-			var script = _.get(value, 'script');
-			script = _.isArray(script) ? script.join(' & ') : script;
-			script = _.isString(script) ? script : '';
+			// Append a new line.
+			appleScript += '\n';
 
-			// Don't do this... buils 1 single full template file, then invoke it once
-			var template = _.templateAppleScript(_.merge(_.clone(config), {
-				delay: 0.5,
-				application: value.application,
-				space: input.space,
-				command: _.escapeQuote(_.get(value, 'command')),
-				pre: _.get(value, 'pre') || '',
-				x: left,
-				y: top,
-				height: h,
-				script: script,
-				width: w
-			}));
+			// Append a comment for the new `setWindow` routine.
+			appleScript += '-- ' + value.application;
 
-			fs.writeFileSync('./tmp/build.applescript', template);
+			// Append the `title` for the window.
+			appleScript += value.title ? ' - ' + value.title : '';
 
-			_.exec('osascript ./tmp/build.applescript');
+			// Append the `description` for the window.
+			appleScript += value.description ? ' - ' + value.description : '';
+
+			// Append a new line.
+			appleScript += '\n';
+
+			// Append the `setWindow` routine.
+			appleScript += _.appleScriptRoutineCall('setWindow', [
+				value.application,
+				config.delay,
+				value.osascript.join(' & '),
+				value.osascriptPre.join(' & '),
+				value.osascriptPost.join(' & '),
+				input.space,
+				value.shell.join(';'),
+				value.shellPre.join(';'),
+				value.shellPost.join(';'),
+				windowHeight,
+				windowWidth,
+				left,
+				top
+			]);
 		});
+
+		var d = path.join(instanceDirectory, 'window.applescript');
+		fs.writeFileSync(d, appleScript);
+
+		try {
+			_.exec('osascript ' + d);
+		} catch (e) {
+			log.error('command failed');
+		}
+
+		// Remove the temporary directory.
+		//_.exec('rm -r ' + instanceDirectory);
 	};
 };

@@ -14,6 +14,7 @@
 		"expressLoad": true,
 		"fs": true,
 		"log": true,
+		"nodeUuid": true,
 		"pkg": true,
 		"path": true,
 		"winston": true
@@ -59,7 +60,7 @@
 		"no-multi-str": 0,
 		"no-native-reassign": 2,
 		"no-negated-in-lhs": 2,
-		"no-nested-ternary": 2,
+		"no-nested-ternary": 0,
 		"no-new": 0,
 		"no-new-func": 2,
 		"no-new-object": 2,

@@ -24,7 +24,7 @@ module.exports = function() {
 		**/
 		castToArray: function(input) {
 			// Cast the reference to a Array.
-			return _.isArray(input) === true || _.isUndefined(input) === true ? input : [input];
+			return _.isArray(input) === true ? input : _.isUndefined(input) === true ? [] : [input];
 		}
 	});
 };

@@ -940,6 +940,11 @@
       "from": "lodash@*",
       "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.11.1.tgz"
     },
+    "node-uuid": {
+      "version": "1.4.7",
+      "from": "node-uuid@*",
+      "resolved": "https://registry.npmjs.org/node-uuid/-/node-uuid-1.4.7.tgz"
+    },
     "winston": {
       "version": "2.2.0",
       "from": "winston@*",

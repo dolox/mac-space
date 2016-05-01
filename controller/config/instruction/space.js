@@ -37,31 +37,7 @@ module.exports = function() {
 			space: [_.isNumber, undefined, 1],
 
 			// The configuration for each of the windows for the space.
-			window: {
-				// The name of the application recognizable by AppleScript.
-				application: [_.isString, ''],
-
-				// Invoke OSA commands after the window has launched.
-				osascriptPost: [_.isArrayOrString, _.castToArray, []],
-
-				// Invoke OSA commands before the window has launched.
-				osascriptPre: [_.isArrayOrString, _.castToArray, []],
-
-				// Invoke OSA commands to assist with launching the window.
-				osascript: [_.isArrayOrString, _.castToArray, []],
-
-				// Invoke shell commands after the window has launched.
-				shellPost: [_.isArrayOrString, _.castToArray, []],
-
-				// Invoke shell commands before the window has launched.
-				shellPre: [_.isArrayOrString, _.castToArray, []],
-
-				// Invoke shells commands to assist with launching the window.
-				shell: [_.isArrayOrString, _.castToArray, []],
-
-				// The title for the window.
-				title: [_.isString, '']
-			}
+			window: [_.isArrayOrObject, _.castToArray, []]
 		};
 	};
 };

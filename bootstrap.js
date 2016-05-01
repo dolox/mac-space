@@ -29,6 +29,9 @@ module.exports = (function(GLOBAL) {
 	// The native file system module.
 	GLOBAL.fs = require('fs');
 
+	// Generate UUIDs.
+	GLOBAL.nodeUuid = require('node-uuid');
+
 	// The native path module.
 	GLOBAL.path = require('path');
 

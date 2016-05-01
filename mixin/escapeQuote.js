@@ -19,7 +19,7 @@ module.exports = function() {
 		* @method escapeQuote
 		* @memberof _
 		* @param {string} input The String with quotes to escape.
-		* @returns {string} The output from the command.
+		* @returns {string} The escaped String.
 		*
 		**/
 		escapeQuote: function(input) {

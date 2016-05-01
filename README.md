@@ -2,6 +2,8 @@
 
 Automate spaces on Mac OS X.
 
+@todo create video gif here
+
 ---
 
 ## Dependencies
@@ -14,19 +16,9 @@ Automate spaces on Mac OS X.
 
 ## Installation
 
-### Package
-
 ```bash
 npm install -g mac-space;
 ```
-
-### System Preferences
-
-The following settings are recommended. Be forewarned that using any other configuration may cause issues.
-
-You can access these settings through `System Preferences -> Mission Control`.
-
-![Mac OS X Mission Control System Preferences](https://raw.githubusercontent.com/dolox/mac-space/master/docs/img/system-preferences-mission-control.png)
 
 ---
 
@@ -59,6 +51,7 @@ The application expects the following configuration in a valid JSON format.
 |       | space  |               | Number       | 1       | No       | The Mac OS X space to assign the windows to.               |
 |       | window |               | Array/Object | []      | No       | The configuration for each of the windows for the space.   |
 |       |        | application   | String       |         | Yes      | The name of the application recognizable by AppleScript.   |
+|       |        | description   | String       |         | No       | A description for the window.                              |
 |       |        | osascriptPost | Array/String |         | No       | Invoke OSA commands after the window has launched.         |
 |       |        | osascriptPre  | Array/String |         | No       | Invoke OSA commands before the window has launched.        |
 |       |        | osascript     | Array/String |         | No       | Invoke OSA commands to assist with launching the window.   |

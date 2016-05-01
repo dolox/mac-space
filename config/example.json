@@ -16,14 +16,18 @@
 
 		"window": [{
 			"application": "Finder",
+			"description": "Open a Finder window.",
 			"osascript": "tell application \"Finder\" to make new Finder window"
 		}, {
-			"application": "Notes"
+			"application": "Notes",
+			"description": "Open the Notes application."
 		}, {
 			"application": "TextEdit",
+			"description": "Open the TextEdit application with pre-filled text.",
 			"shell": "echo 'mac-space' | open -f"
 		}, {
 			"application": "Terminal",
+			"description": "Open the Terminal application and run a command.",
 			"osascript": "tell application \"Terminal\" to do script \"ls -la\""
 		}]
 	}, {
