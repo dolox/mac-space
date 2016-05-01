@@ -13,12 +13,6 @@ on setWindow(inputApplication, inputDelay, inputOsascript, inputOsascriptPre, in
 	-- Invoke the pre-osascript.
 	if (inputOsascriptPre is not "") then run script inputOsascriptPre
 
-	-- Activate the space.
-	setSpace(inputDelay, inputSpace)
-
-	-- Invoke the shell commmand.
-	if (inputShell is not "") then do shell script inputShell
-
 	-- Launch the Application.
 	tell application inputApplication to launch
 
@@ -28,14 +22,14 @@ on setWindow(inputApplication, inputDelay, inputOsascript, inputOsascriptPre, in
 	-- Set the Application as the top window.
 	tell application inputApplication to activate
 
-	-- Set the space again, in the event that the Application acivation changed the space.
-	setSpace(inputDelay, inputSpace)
+	-- Invoke the shell commmand.
+	if (inputShell is not "") then do shell script inputShell
 
 	-- Invoke the osascript.
 	if (inputOsascript is not "") then run script inputOsascript
 
 	-- Resize and reposition the window.
-	if (inputWindowHeight is not 0 or inputWindowWidth is not 0 or inputWindowX is not 0 or inputWindowY is not 0) then
+	if (inputWindowHeight is not 0 or inputWindowWidth is not 0) then
 		-- Use the system events to interact with the application.
 		tell application "System Events"
 			-- Fetch the first application process available.
@@ -48,10 +42,10 @@ on setWindow(inputApplication, inputDelay, inputOsascript, inputOsascriptPre, in
 					-- Attempt to resize and reposition the window.
 					try
 						-- Reposition the window.
-						if (inputWindowHeight is not 0 or inputWindowWidth is not 0) then set position to {inputWindowX, inputWindowY}
+						set position to {inputWindowX, inputWindowY}
 
 						-- Resize the window.
-						if (inputWindowX is not 0 or inputWindowY is not 0) then set size to {inputWindowWidth, inputWindowHeight}
+						if (inputWindowHeight is not 0 or inputWindowWidth is not 0) then set size to {inputWindowWidth, inputWindowHeight}
 					end try
 				end tell
 			end tell

@@ -4,12 +4,51 @@
 	"space": [{
 		"column": {
 			"max": 2,
-			"spacing": 1
+			"spacing": 5
 		},
 
 		"row": {
+			"max": 3,
+			"spacing": 5
+		},
+		"space": 2,
+
+		"window": [{
+			"application": "TextEdit",
+			"description": "Open the TextEdit application with pre-filled text.",
+			"shell": "echo 'mac-space x1' | open -f"
+		}, {
+			"application": "TextEdit",
+			"description": "Open the TextEdit application with pre-filled text.",
+			"shell": "echo 'mac-space x2' | open -f"
+		}, {
+			"application": "TextEdit",
+			"description": "Open the TextEdit application with pre-filled text.",
+			"shell": "echo 'mac-space x3' | open -f"
+		}, {
+			"application": "TextEdit",
+			"description": "Open the TextEdit application with pre-filled text.",
+			"shell": "echo 'mac-space x4' | open -f"
+		}, {
+			"application": "TextEdit",
+			"description": "Open the TextEdit application with pre-filled text.",
+			"shell": "echo 'mac-space x5' | open -f"
+		}, {
+			"application": "TextEdit",
+			"description": "Open the TextEdit application with pre-filled text.",
+			"shell": "echo 'mac-space x6' | open -f"
+		}]
+	}, {
+		"column": {
 			"max": 2,
-			"spacing": 1
+			"spacing": 0
+		},
+
+		"enabled": false,
+
+		"row": {
+			"max": 2,
+			"spacing": 0
 		},
 
 		"space": 2,
@@ -31,13 +70,7 @@
 			"osascript": "tell application \"Terminal\" to do script \"ls -la\""
 		}]
 	}, {
-		"column": {
-			"max": 0
-		},
-
-		"row": {
-			"max": 0
-		},
+		"enabled": false,
 
 		"space": 3,
 

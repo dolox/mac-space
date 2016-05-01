@@ -38,27 +38,28 @@ npm install -g mac-space;
 
 The application expects the following configuration in a valid JSON format.
 
-| Key   |        |               | Type         | Default | Required | Description                                                |
-|-------|--------|---------------|--------------|---------|----------|------------------------------------------------------------|
-| delay |        |               | Number       | 0.5     | No       | The delay between launching windows.                       |
-| space |        |               | Array/Object | []      | No       | The configuration for the space.                           |
-|       | column |               | Object       | {}      | No       | The grid columns configuration.                            |
-|       |        | max           | Number       | 2       | No       | The maximum number of columns to allow.                    |
-|       |        | spacing       | Number       | 0       | No       | The number of pixels to space the columns with.            |
-|       | row    |               | Object       | {}      | No       | The grid rows configuration.                               |
-|       |        | max           | Number       | 2       | No       | The maximum number of rows to allow.                       |
-|       |        | spacing       | Number       | 0       | No       | The number of pixels to space the rows with.               |
-|       | space  |               | Number       | 1       | No       | The Mac OS X space to assign the windows to.               |
-|       | window |               | Array/Object | []      | No       | The configuration for each of the windows for the space.   |
-|       |        | application   | String       |         | Yes      | The name of the application recognizable by AppleScript.   |
-|       |        | description   | String       |         | No       | A description for the window.                              |
-|       |        | osascriptPost | Array/String |         | No       | Invoke OSA commands after the window has launched.         |
-|       |        | osascriptPre  | Array/String |         | No       | Invoke OSA commands before the window has launched.        |
-|       |        | osascript     | Array/String |         | No       | Invoke OSA commands to assist with launching the window.   |
-|       |        | shellPost     | Array/String |         | No       | Invoke shell commands after the window has launched.       |
-|       |        | shellPre      | Array/String |         | No       | Invoke shell commands before the window has launched.      |
-|       |        | shell         | Array/String |         | No       | Invoke shell commands to assist with launching the window. |
-|       |        | title         | String       |         | No       | The title for the window.                                  |
+| Key   |         |               | Type         | Default | Required | Description                                                |
+|-------|---------|---------------|--------------|---------|----------|------------------------------------------------------------|
+| delay |         |               | Number       | 0.5     | No       | The delay between launching windows.                       |
+| space |         |               | Array/Object | []      | No       | The configuration for the space.                           |
+|       | column  |               | Object       | {}      | No       | The grid columns configuration.                            |
+|       |         | max           | Number       | 0       | No       | The maximum number of columns to allow.                    |
+|       |         | spacing       | Number       | 0       | No       | The number of pixels to space the columns with.            |
+|       | enabled |               | Boolean      | true    | No       | Whether the space is enabled or not.                       |
+|       | row     |               | Object       | {}      | No       | The grid rows configuration.                               |
+|       |         | max           | Number       | 0       | No       | The maximum number of rows to allow.                       |
+|       |         | spacing       | Number       | 0       | No       | The number of pixels to space the rows with.               |
+|       | space   |               | Number       | 1       | No       | The Mac OS X space to assign the windows to.               |
+|       | window  |               | Array/Object | []      | No       | The configuration for each of the windows for the space.   |
+|       |         | application   | String       |         | Yes      | The name of the application recognizable by AppleScript.   |
+|       |         | description   | String       |         | No       | A description for the window.                              |
+|       |         | osascriptPost | Array/String |         | No       | Invoke OSA commands after the window has launched.         |
+|       |         | osascriptPre  | Array/String |         | No       | Invoke OSA commands before the window has launched.        |
+|       |         | osascript     | Array/String |         | No       | Invoke OSA commands to assist with launching the window.   |
+|       |         | shellPost     | Array/String |         | No       | Invoke shell commands after the window has launched.       |
+|       |         | shellPre      | Array/String |         | No       | Invoke shell commands before the window has launched.      |
+|       |         | shell         | Array/String |         | No       | Invoke shell commands to assist with launching the window. |
+|       |         | title         | String       |         | No       | The title for the window.                                  |
 
 ### Notes
 

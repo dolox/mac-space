@@ -18,16 +18,19 @@ module.exports = function() {
 			// The grid columns configuration.
 			column: {
 				// The maximum number of columns to allow.
-				max: [_.isNumber, undefined, 2],
+				max: [_.isNumber, undefined, 0],
 
 				// The number of pixels to space the columns with.
 				spacing: [_.isNumber, undefined, 0]
 			},
 
+			// Whether the space is enabled or not.
+			enabled: [_.isBoolean, undefined, true],
+
 			// The grid rows configuration.
 			row: {
 				// The maximum number of rows to allow.
-				max: [_.isNumber, undefined, 2],
+				max: [_.isNumber, undefined, 0],
 
 				// The number of pixels to space the rows with.
 				spacing: [_.isNumber, undefined, 0]

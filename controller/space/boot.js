@@ -15,6 +15,11 @@ module.exports = function() {
 
 	// Wrap the Function.
 	return function(config, input) {
+		// If the window isn't enabled, then stop the Function.
+		if (input.enabled === false) {
+			return;
+		}
+
 		// Store the concatenated AppleScript template.
 		var appleScript = '';
 
@@ -22,6 +27,15 @@ module.exports = function() {
 		appleScript += fs.readFileSync(path.join(__dirname, '..', '..', 'applescript', 'setSpace.applescript')).toString();
 		appleScript += fs.readFileSync(path.join(__dirname, '..', '..', 'applescript', 'setSpaceIndex.applescript')).toString();
 		appleScript += fs.readFileSync(path.join(__dirname, '..', '..', 'applescript', 'setWindow.applescript')).toString();
+
+		// Append a comment for the new `setSpace` routine.
+		appleScript += '\n-- Move to Space ' + input.space + '\n';
+
+		// Append the `setSpace` routine.
+		appleScript += _.appleScriptRoutineCall('setSpace', [
+			config.delay,
+			input.space
+		]) + '\n';
 
 		// The starting column for the grid.
 		var column = -1;
@@ -45,8 +59,13 @@ module.exports = function() {
 		fs.mkdirSync(instanceDirectory);
 
 
+
+
 		// @todo ok so this we need to fetch when the space changes apparently...
 		var resolution = _.screenResolution();
+
+
+
 
 		// Iterate through each of the windows and open them on the specific space.
 		input.window.forEach(function(value) {
@@ -59,6 +78,7 @@ module.exports = function() {
 				return;
 			}
 
+			// @todo cleanup
 			var windowHeight = 0;
 			var windowWidth = 0;
 			var windowX = 0;
@@ -90,43 +110,26 @@ module.exports = function() {
 				}
 
 				// Adjust the X position of the window.
-				windowX = column * (resolution.width / input.column.max);
+				windowX = column * (resolution.width / input.column.max) + column * input.column.spacing;
 
 				// Adjust the Y position of the window.
-				windowY = row * (resolution.height / input.row.max);
+				windowY = row * (resolution.height / input.row.max) + row * input.row.spacing;
 
 				// If column spacing is enabled, then adjust the window.
 				if (input.column.spacing > 0 && input.column.max > 1) {
-					// Only adjust the X position, if it's not the first column.
-					if (column > 1) {
-						windowX += input.column.spacing;
-					}
-
 					// Adjust the window width.
 					windowWidth -= input.column.spacing;
 				}
 
 				// If row spacing is enabled, then adjust the window.
 				if (input.row.spacing > 0 && input.row.max > 1) {
-					// Only adjust the Y position, if it's not the first row.
-					if (row > 1) {
-						windowY += input.row.spacing;
-					}
-
 					// Adjust the window height.
 					windowHeight -= input.row.spacing;
 				}
-
-				if (input.column.max > 1) {
-					windowWidth -= input.column.spacing;
-				}
 			}
 
-			// Append a new line.
-			appleScript += '\n';
-
 			// Append a comment for the new `setWindow` routine.
-			appleScript += '-- ' + value.application;
+			appleScript += '\n-- ' + value.application;
 
 			// Append the `title` for the window.
 			appleScript += value.title ? ' - ' + value.title : '';
@@ -134,11 +137,8 @@ module.exports = function() {
 			// Append the `description` for the window.
 			appleScript += value.description ? ' - ' + value.description : '';
 
-			// Append a new line.
-			appleScript += '\n';
-
 			// Append the `setWindow` routine.
-			appleScript += _.appleScriptRoutineCall('setWindow', [
+			appleScript += '\n' + _.appleScriptRoutineCall('setWindow', [
 				value.application,
 				config.delay,
 				value.osascript.join(' & '),
@@ -152,15 +152,17 @@ module.exports = function() {
 				windowWidth,
 				windowX,
 				windowY
-			]);
+			]) + '\n';
 		});
 
 		var appleScriptFile = path.join(instanceDirectory, 'window.applescript');
+
+		// Store the AppleScript file.
 		fs.writeFileSync(appleScriptFile, appleScript);
 
-		// Attempt to invoke the batch script.
+		// Attempt to invoke the AppleScript file.
 		try {
-			// Invoke the AppleScript.
+			// Invoke the AppleScript file.
 			_.exec('osascript ' + appleScriptFile);
 		}
 
@@ -171,6 +173,6 @@ module.exports = function() {
 		}
 
 		// Remove the temporary directory.
-		_.exec('rm -r ' + instanceDirectory);
+		//_.exec('rm -r ' + instanceDirectory);
 	};
 };
