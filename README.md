@@ -69,7 +69,7 @@ The application expects the following configuration in a valid JSON format.
 
 - **Disabling Grid/Resizing/Moving:** Set the maximum number of columns and rows to `0` to disable resizing and moving of windows. Doing this will simply assign the window to a specific space.
 
-- **Empty Grid Spaces:** Leave `space.window.application` field empty and the grid space will be left empty.
+- **Empty Grid Spaces:** Leave the `space.window.application` field empty and the grid space will be left empty.
 
 ---
 
