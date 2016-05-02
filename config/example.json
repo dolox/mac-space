@@ -58,7 +58,7 @@
 			"osascript": "tell application \"Finder\" to make new Finder window"
 		}, {
 			"application": "Terminal",
-			"description": "Open the Terminal application and run a command. Space 4 will close this terminal.",
+			"description": "Open the Terminal application and run a command. Space 3 will close this terminal.",
 			"osascript": "tell application \"Terminal\" to do script \"echo -n -e '\\\\033]0;mac-space Removable Terminal\\\\007';\""
 		}, {
 			"application": "Finder",
